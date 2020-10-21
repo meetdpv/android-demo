@@ -1,13 +1,13 @@
-Pipeline {
+  pipeline {
     agent { dockerfile true }
-    environment {
-        appName = 'android-template'
-    }
-    stages {
-        stage('SCM Checkout') {
-            steps {
+    stages { 
+        stage('Build') { 
+            steps { 
+                // 3
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/meetdpv/android-demo.git']]])
                 echo 'SCM Checkout'
             }
         }
+       
     }
-}    
+}  
